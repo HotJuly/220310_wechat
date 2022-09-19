@@ -1,14 +1,10 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
+  "pages": [
+    "pages/index/index"
   ],
-  "window":{
-    "navigationBarBackgroundColor": "#f0f",
+  "window": {
+    "navigationBarBackgroundColor": "#f00",
     "navigationBarTitleText": "atguigu",
-    "navigationBarTextStyle":"white",
-    "navigationStyle": "default"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "navigationBarTextStyle": "white"
+  }
 }
