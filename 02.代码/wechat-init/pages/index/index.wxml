@@ -13,7 +13,7 @@
 <view class="indexContainer">
   <image class="avatarUrl" src="/static/dazuo.jpeg"></image>
 
-  <text class="username">你好,七月</text>
+  <text class="username">你好,{{msg}}</text>
 
   <button class="welcome">欢迎来到尚硅谷</button>
 </view>
