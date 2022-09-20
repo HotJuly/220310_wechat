@@ -32,9 +32,10 @@ bindtap="handler"
 
 
 <view class="indexContainer" >
-  <image class="avatarUrl" src="/static/dazuo.jpeg"></image>
+  <image class="avatarUrl" src="{{userInfo.avatarUrl}}"></image>
 
-  <text class="username" bindtap="changeMsg">你好,{{msg}}</text>
+  <text class="username" bindtap="changeMsg">你好,{{userInfo.nickName}}</text>
 
-  <button class="welcome" bindtap="handleTap">欢迎来到尚硅谷</button>
+  <!-- <button class="welcome" bindtap="handleTap">欢迎来到尚硅谷</button> -->
+  <button class="welcome" bindtap="getUserProfile">欢迎来到尚硅谷</button>
 </view>
