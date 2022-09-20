@@ -19,6 +19,24 @@ Page({
     console.log('handleParent')
   },
 
+  handleTap(){
+    // wx.navigateTo({
+    //   // url: '../log/log',
+    //   url: '/pages/log/log',
+    // })
+
+    wx.redirectTo({
+      url: '../log/log',
+      // url: '/pages/log/log',
+    })
+  },
+
+  changeMsg(){
+    this.setData({
+      msg:"我被点击了"
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
