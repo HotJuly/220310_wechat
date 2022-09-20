@@ -8,6 +8,17 @@ Page({
     msg:"我是初始化数据"
   },
 
+  // 用于测试移动端基础事件
+  handler(){
+    console.log('handler')
+  },
+  handleChild(){
+    console.log('handleChild')
+  },
+  handleParent(){
+    console.log('handleParent')
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

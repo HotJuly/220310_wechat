@@ -10,10 +10,22 @@
       他与html中的button标签特点相似,都是行内块元素
 
  -->
-<view class="indexContainer">
+<view class="indexContainer" capture-catch:tap="handleParent">
+  <image class="avatarUrl" src="/static/dazuo.jpeg"></image>
+
+  <text class="username">你好,{{msg}}</text>
+
+  <button class="welcome" bindtap="handleChild">欢迎来到尚硅谷</button>
+</view>
+
+
+<!-- <view 
+class="indexContainer"
+bindtap="handler"
+>
   <image class="avatarUrl" src="/static/dazuo.jpeg"></image>
 
   <text class="username">你好,{{msg}}</text>
 
   <button class="welcome">欢迎来到尚硅谷</button>
-</view>
+</view> -->
