@@ -12,7 +12,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('msg',this.data.msg)
+    console.log('msg1',this.data.msg);
+
+    // this.data.msg = "我是修改之后的数据"
+    // this是当前页面的实例对象
+    this.setData({
+      msg:"我是修改之后的数据"
+    })
+
+    console.log('msg2',this.data.msg);
   },
 
   /**
