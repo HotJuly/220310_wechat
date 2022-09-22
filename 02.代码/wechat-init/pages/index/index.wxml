@@ -37,5 +37,6 @@ bindtap="handler"
   <text class="username" bindtap="changeMsg">你好,{{userInfo.nickName}}</text>
 
   <!-- <button class="welcome" bindtap="handleTap">欢迎来到尚硅谷</button> -->
-  <button class="welcome" bindtap="getUserProfile">欢迎来到尚硅谷</button>
+  <!-- <button class="welcome" bindtap="getUserProfile">欢迎来到尚硅谷</button> -->
+  <button class="welcome" bindtap="toLocation">欢迎来到{{city}}尚硅谷</button>
 </view>
