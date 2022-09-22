@@ -46,4 +46,75 @@
       <view class="navTitle">直播</view>
     </view>
   </view>
+
+  <view class="recommendContainer">
+    <view class="header">
+      <view class="title">推荐歌曲</view>
+      <view class="content">
+        <view class="moreTitle">
+          为你精心推荐
+        </view>
+        <view class="more">
+          查看更多
+        </view>
+      </view>
+    </view>
+    <scroll-view class="recommendScroll" enable-flex 	scroll-x>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+      <view class="recommendItem">
+        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+        <view class="recommendTitle">
+          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+        </view>
+      </view>
+    </scroll-view>
+    123123
+  </view>
 </view>

@@ -33,3 +33,71 @@
 .indexContainer .nav .navItem .navTitle{
   font-size:26rpx;
 }
+
+/* 推荐歌曲区域开始 */
+
+.header .title{
+  font-size:26rpx;
+}
+
+.header .content{
+  display:flex;
+  justify-content: space-between;
+}
+
+.header .content .moreTitle{
+  font-size: 30rpx;
+}
+
+.header .content .more{
+  font-size: 26rpx;
+  border: 1rpx solid;
+  padding: 10rpx 20rpx;
+  border-radius: 15rpx;
+}
+
+.recommendContainer{
+  padding: 0 20rpx;
+}
+
+.recommendContainer .recommendScroll{
+  display:flex;
+
+  /* scroll-view组件开始flex布局之后会出现bug
+    bug:绘制页面以横向布局绘制,但是计算高度还是按照开启flex之前进行计算
+  */
+  height:300rpx;
+}
+
+.recommendContainer .recommendScroll .recommendItem{
+  width:200rpx;
+  margin-right:20rpx;
+}
+
+.recommendContainer .recommendScroll .recommendItem .recommendImg{
+  width:200rpx;
+  height:200rpx;
+  border-radius: 20rpx;
+}
+
+.recommendContainer .recommendScroll .recommendItem .recommendTitle{
+  /* 
+    需求:单行文本溢出隐藏,并且显示省略号
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  */
+
+  display:-webkit-box;
+
+  /* 告知CSS几行之后溢出隐藏 */
+  -webkit-line-clamp:2;
+
+  /* 告知CSS当前文本的排列方向 */
+  -webkit-box-orient: vertical;
+  
+  overflow:hidden;
+}
+
+
+/* 推荐歌曲区域结束 */
