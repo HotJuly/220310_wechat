@@ -6,6 +6,9 @@ Page({
    */
   data: {
 
+    // 用于存储首页轮播图数据
+    banners:[]
+    
   },
 
   /**
@@ -36,17 +39,20 @@ Page({
     // console.log('window',window)
     // console.log('wx',wx)
 
-    console.log(1)
+    // console.log(1)
     wx.request({
       url:"http://localhost:3000/banner",
       data:{
         type:2
       },
       success:(res)=>{
-        console.log('res',res)
+        // console.log('res',res)
+        this.setData({
+          banners:res.data.banners
+        })
       }
     })
-    console.log(2)
+    // console.log(2)
   },
 
   /**

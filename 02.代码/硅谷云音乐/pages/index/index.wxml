@@ -5,20 +5,22 @@
   indicator-active-color="#d43c33"
   circular
   >
-    <swiper-item class="bannerItem">
+    <!-- <swiper-item 
+    class="bannerItem"
+    v-for="(item,index) in banners"
+    :key="item.id"
+    >
       <image class="bannerImg" src="/static/images/dazuo.jpeg"></image>
-    </swiper-item>
-    <swiper-item class="bannerItem">
-      <image class="bannerImg" src="/static/images/dazuo.jpeg"></image>
-    </swiper-item>
-    <swiper-item class="bannerItem">
-      <image class="bannerImg" src="/static/images/dazuo.jpeg"></image>
-    </swiper-item>
-    <swiper-item class="bannerItem">
-      <image class="bannerImg" src="/static/images/dazuo.jpeg"></image>
-    </swiper-item>
-    <swiper-item class="bannerItem">
-      <image class="bannerImg" src="/static/images/dazuo.jpeg"></image>
+    </swiper-item> -->
+
+
+    <swiper-item 
+    class="bannerItem"
+    wx:for="{{banners}}"
+    wx:for-item="banner"
+    wx:key="id"
+    >
+      <image class="bannerImg" src="{{banner.pic}}"></image>
     </swiper-item>
   </swiper>
 
