@@ -60,61 +60,64 @@
       </view>
     </view>
     <scroll-view class="recommendScroll" enable-flex 	scroll-x>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
+      <view 
+      class="recommendItem"
+      wx:for="{{recommendList}}"
+      wx:key="id"
+      >
+        <image class="recommendImg" src="{{item.picUrl}}"></image>
         <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
+          {{item.name}}
         </view>
+        <!-- <text class="recommendTitle">{{item.name}}</text> -->
       </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
-      <view class="recommendItem">
-        <image class="recommendImg" src="/static/images/dazuo.jpeg"></image>
-        <view class="recommendTitle">
-          大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一大佐天下第一
-        </view>
-      </view>
+      
     </scroll-view>
     123123
+  </view>
+  
+  <view class="topContainer">
+    <swiper 
+    class="topSwiper"
+    next-margin="50"
+    snap-to-edge
+    >
+      <swiper-item>
+        <view class="topItem">
+          <view>
+            云音乐说唱榜
+          </view>
+          <view class="song">
+            <image class="songImg" src="/static/images/dazuo.jpeg" lazy-load></image>
+            <view class="songIndex">1</view>
+            <view class="songName">大佐天下第一</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="topItem">
+          <view>
+            云音乐说唱榜
+          </view>
+          <view class="song">
+            <image class="songImg" src="/static/images/dazuo.jpeg" lazy-load></image>
+            <view class="songIndex">1</view>
+            <view class="songName">大佐天下第一</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="topItem">
+          <view>
+            云音乐说唱榜
+          </view>
+          <view class="song">
+            <image class="songImg" src="/static/images/dazuo.jpeg" lazy-load></image>
+            <view class="songIndex">1</view>
+            <view class="songName">大佐天下第一</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 </view>
