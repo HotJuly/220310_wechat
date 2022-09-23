@@ -6,6 +6,11 @@ Page({
    */
   data: {
 
+    // 用于存储当前元素移动距离
+    moveDistance:0,
+
+    // 用于控制元素移动的过渡效果
+    moveTransition:""
   },
 
   /**
@@ -13,6 +18,38 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  // 用于监视用户手指移动操作
+  handleTouchMove(event){
+    // 获取当前手指的位置
+    const moveY = event.touches[0].clientY;
+
+    const moveDistance = moveY - this.startY;
+    // console.log('moveDistance',moveDistance)
+
+    if(moveDistance<0||moveDistance>80)return;
+    this.setData({
+      moveDistance
+    })
+  },
+
+  // 用于监视用户手指按下操作
+  handleTouchStart(event){
+    // 将手指按下的位置存入this身上,方便后续计算使用
+    this.startY = event.touches[0].clientY;
+    this.setData({
+      moveTransition:""
+    })
+  },
+
+  // 用于监视用户手指抬起操作
+  handleTouchEnd(){
+    // console.log('handleTouchEnd')
+    this.setData({
+      moveDistance:0,
+      moveTransition:"transform 1s"
+    })
   },
 
   /**
