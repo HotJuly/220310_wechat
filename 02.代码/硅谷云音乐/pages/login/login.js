@@ -177,6 +177,15 @@ Page({
         wx.showToast({
           title: '登陆成功,即将跳转',
           icon:"none"
+        });
+        wx.switchTab({
+          url: '/pages/personal/personal',
+        })
+
+        // localStorage和此处的Storage不是同一个东西
+        wx.setStorage({
+          key:"userInfo",
+          data:result.profile
         })
         return;
       },
@@ -202,7 +211,7 @@ Page({
         return;
       }
     }
-    
+
     // if(codeFn[code]){
     //   codeFn[code]()
     // }
