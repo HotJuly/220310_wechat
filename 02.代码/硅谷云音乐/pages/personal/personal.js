@@ -52,6 +52,13 @@ Page({
     })
   },
 
+  // 用于监视用户点击游客按钮,进行页面跳转
+  toLogin(){
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

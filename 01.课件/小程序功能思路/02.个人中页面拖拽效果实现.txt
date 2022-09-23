@@ -21,3 +21,4 @@
 				移动距离= 手指当前位置 - 手指按下位置
 
 				想要知道用户手指按下的位置,需要通过touchstart事件的event对象可以获取
+					event.touches[0].clientY是当前手指瞬间的Y轴坐标
