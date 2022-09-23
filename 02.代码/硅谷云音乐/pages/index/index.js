@@ -11,7 +11,10 @@ Page({
     banners: [],
 
     // 用于存储首页推荐歌曲数据
-    recommendList:[]
+    recommendList:[],
+
+    // 用于存储首页排行榜区域数据
+    topList:[]
 
   },
 
@@ -77,6 +80,53 @@ Page({
     this.setData({
       recommendList:result1.result
     })
+
+
+    // 以下代码用于请求排行榜区域数据
+
+    // 用于收集请求到的所有榜单对象数据
+    const topList = [];
+
+    // 用于收集需要请求的榜单的key
+    const arr = [2,6,10,15,20];
+    let index = 0;
+
+    while(index<arr.length){
+      const result2 = await myAxios("/top/list",{idx:arr[index++]});
+      // console.log('result2', result2)
+      // this.setData({
+      //   recommendList:result1.result
+      // })
+      /*
+        splice(开始下标,个数,新的数据)
+          该API可以实现增删改三个操作
+          该API会影响到原数组
+            增加:arr.splice(1,0,"a")
+            修改:arr.splice(1,1,"a")
+            删除:arr.splice(1,1)
+  
+        slice(开始下标,结束下标)
+          该API用于切割数组
+          该API不会影响到原数组
+          他会根据原数组切割出部分内容(从开始下标开始切割,到结束下标之前的内容)
+            例如:arr.slice(1,6)=>意思是切割下标1到5的内容生成全新的数组
+      
+      */
+      const obj = {
+        id:result2.playlist.id,
+        name:result2.playlist.name,
+        list:result2.playlist.tracks.slice(0,3).map((item)=>{
+          return item.al
+        })
+      };
+  
+  
+      topList.push(obj);
+  
+      this.setData({
+        topList
+      })
+    }
   },
 
   /**

@@ -48,17 +48,9 @@
   </view>
 
   <view class="recommendContainer">
-    <view class="header">
-      <view class="title">推荐歌曲</view>
-      <view class="content">
-        <view class="moreTitle">
-          为你精心推荐
-        </view>
-        <view class="more">
-          查看更多
-        </view>
-      </view>
-    </view>
+    
+    <NavHeader title="推荐歌曲"/>
+    <!-- NavHeader -->
     <scroll-view class="recommendScroll" enable-flex 	scroll-x>
       <view 
       class="recommendItem"
@@ -73,48 +65,34 @@
       </view>
       
     </scroll-view>
-    123123
   </view>
   
   <view class="topContainer">
+    <NavHeader title="排行榜" moreTitle="热歌风向标"/>
     <swiper 
     class="topSwiper"
     next-margin="50"
     snap-to-edge
     >
-      <swiper-item>
+      
+      <swiper-item
+      wx:for="{{topList}}"
+      wx:key="id"  
+      >
         <view class="topItem">
           <view>
-            云音乐说唱榜
+            {{item.name}}
           </view>
-          <view class="song">
-            <image class="songImg" src="/static/images/dazuo.jpeg" lazy-load></image>
-            <view class="songIndex">1</view>
-            <view class="songName">大佐天下第一</view>
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class="topItem">
-          <view>
-            云音乐说唱榜
-          </view>
-          <view class="song">
-            <image class="songImg" src="/static/images/dazuo.jpeg" lazy-load></image>
-            <view class="songIndex">1</view>
-            <view class="songName">大佐天下第一</view>
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class="topItem">
-          <view>
-            云音乐说唱榜
-          </view>
-          <view class="song">
-            <image class="songImg" src="/static/images/dazuo.jpeg" lazy-load></image>
-            <view class="songIndex">1</view>
-            <view class="songName">大佐天下第一</view>
+          <view 
+          class="song"
+          wx:for="{{item.list}}"
+          wx:for-item="song"
+          wx:for-index="songIndex"
+          wx:key="id"
+          >
+            <image class="songImg" src="{{song.picUrl}}" lazy-load></image>
+            <view class="songIndex">{{songIndex + 1}}</view>
+            <view class="songName">{{song.name}}</view>
           </view>
         </view>
       </swiper-item>

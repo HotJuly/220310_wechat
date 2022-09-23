@@ -36,25 +36,6 @@
 
 /* 推荐歌曲区域开始 */
 
-.header .title{
-  font-size:26rpx;
-}
-
-.header .content{
-  display:flex;
-  justify-content: space-between;
-}
-
-.header .content .moreTitle{
-  font-size: 30rpx;
-}
-
-.header .content .more{
-  font-size: 26rpx;
-  border: 1rpx solid;
-  padding: 10rpx 20rpx;
-  border-radius: 15rpx;
-}
 
 .recommendContainer{
   padding: 0 20rpx;
