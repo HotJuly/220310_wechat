@@ -11,7 +11,10 @@ Page({
     navList:[],
 
     // 用于存储用户正在查看的内容标识
-    currentId:null
+    currentId:null,
+
+    // 用于存储视频列表相关数据
+    videoList:[]
   },
 
   // 用于监视用户点击导航选项操作
@@ -56,6 +59,18 @@ Page({
       navList,
       currentId:navList[0].id
     })
+
+    const result2 = await myAxios('/video/group',{
+      id:this.data.currentId
+    })
+
+    this.setData({
+      videoList:result2.datas.map((item)=>{
+        return item.data;
+      })
+    })
+
+    // console.log('result2',result2)
   },
 
   /**

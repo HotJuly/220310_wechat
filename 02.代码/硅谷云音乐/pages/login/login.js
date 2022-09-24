@@ -187,6 +187,8 @@ Page({
           key:"userInfo",
           data:result.profile
         })
+
+        wx.setStorageSync("cookie","MUSIC_U=f9cd6ac08eab37cd4115366822656820f0e78835609bdde32a4f6b5d18412a972db2b90205957188be88579e707bdbe9dfb88a34081aad6b88d7a9980d9f344dfa3fd9b678600d111b93ac14e0ed86ab; Max-Age=1296000; Expires=Sun, 09 Oct 2022 03:51:28 GMT; Path=/; Domain=.music.163.com; HTTPOnly")
         return;
       },
       404(){
