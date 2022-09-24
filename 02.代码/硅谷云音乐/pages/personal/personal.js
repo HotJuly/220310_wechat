@@ -1,4 +1,5 @@
 // pages/personal/personal.js
+import myAxios from '../../utils/myAxios';
 Page({
 
   /**
@@ -13,7 +14,10 @@ Page({
     moveTransition: "",
 
     // 用于存储用户信息
-    userInfo: {}
+    userInfo: {},
+
+    // 用于存储最近播放记录列表数据
+    playList:[]
   },
 
   // 用于监视用户手指移动操作
@@ -72,7 +76,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow:async function () {
     // console.log('onShow')
     /*
       为什么选择使用onShow?
@@ -86,6 +90,22 @@ Page({
       this.setData({
         userInfo
       })
+
+      const result = await myAxios('/user/record',{
+        type:1,
+        uid:userInfo.userId
+      })
+      // console.log(result)
+
+      const playList = result.weekData.map((item)=>{
+        return item.song;
+      })
+
+      this.setData({
+        playList
+      })
+
+      return;
     }
   },
 

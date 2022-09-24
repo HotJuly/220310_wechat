@@ -3,10 +3,7 @@
     <image class="bg" src="/static/images/personal/bgImg2.jpg"></image>
 
 
-    <view 
-    class="user-info-box"
-    bindtap="toLogin"
-    >
+    <view class="user-info-box" bindtap="toLogin">
       <view class="portrait-box">
         <image class="portrait" src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/static/images/personal/missing-face.png'}}"></image>
       </view>
@@ -31,37 +28,39 @@
   </view>
 
 
-  <view 
-  class="cover-container"
-  style="transform:translateY({{moveDistance}}rpx);transition:{{moveTransition}}"
-  bindtouchmove="handleTouchMove"
-  bindtouchstart="handleTouchStart"
-  bindtouchend="handleTouchEnd"
-  >
+  <view class="cover-container" style="transform:translateY({{moveDistance}}rpx);transition:{{moveTransition}}" bindtouchmove="handleTouchMove" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
     <image class="arc" src="/static/images/personal/arc.png"></image>
     <!-- 个人中心导航 -->
     <view class="nav-section">
-      <view class="nav-item"  hover-class="common-hover"  hover-stay-time="50">
+      <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
         <text class="iconfont icon-xiaoxi"></text>
         <text>我的消息</text>
       </view>
-      <view class="nav-item"   hover-class="common-hover" hover-stay-time="50">
+      <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
         <text class="iconfont icon-myRecommender"></text>
         <text>我的好友</text>
       </view>
-      <view class="nav-item"  hover-class="common-hover"  hover-stay-time="50">
+      <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
         <text class="iconfont icon-gerenzhuye"></text>
         <text>个人主页</text>
       </view>
-      <view class="nav-item" hover-class="common-hover"  hover-stay-time="50">
+      <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
         <text class="iconfont icon-gexingzhuangban"></text>
         <text>个性装扮</text>
       </view>
     </view>
 
     <view class="playContent">
-        <view class="noData">暂时没有数据</view>
-      </view>
+      <scroll-view wx:if="{{playList.length}}" class="playList" enable-flex scroll-x>
+        <!-- <image class="playItem" src="/static/images/dazuo.jpeg"></image>
+          <image class="playItem" src="/static/images/dazuo.jpeg"></image> -->
+        <view wx:for="{{playList}}" wx:key="id">
+          <image class="playItem" src="{{item.al.picUrl}}"></image>
+        </view>
+      </scroll-view>
+      <view wx:else class="noData">暂时没有数据</view>
+
+    </view>
 
     <view class="cardList">
       <view class="card-item">

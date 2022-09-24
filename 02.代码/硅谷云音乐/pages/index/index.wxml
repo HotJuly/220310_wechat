@@ -57,7 +57,7 @@
       wx:for="{{recommendList}}"
       wx:key="id"
       >
-        <image class="recommendImg" src="{{item.picUrl}}"></image>
+        <image class="recommendImg" src="{{item.picUrl}}" lazy-load></image>
         <view class="recommendTitle">
           {{item.name}}
         </view>

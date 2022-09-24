@@ -60,10 +60,18 @@ Page({
     //     })
     //   }
     // })
+    
+    // const result = await myAxios('/banner', {type: 2});
+    // this.setData({
+    //   banners:result.banners
+    // })
 
-    const result = await myAxios('/banner', {type: 2});
-    this.setData({
-      banners:result.banners
+    myAxios('/banner', {type: 2})
+    .then((result)=>{
+      // 通过.then的回调函数的形参,可以获取到promise对象的结果值
+      this.setData({
+        banners:result.banners
+      })
     })
 
     // console.log(2)
@@ -75,10 +83,11 @@ Page({
     //     console.log('res',res)
     //   }
     // })
-    const result1 = await myAxios("/personalized");
-    // console.log('result1', result1)
-    this.setData({
-      recommendList:result1.result
+    myAxios("/personalized")
+    .then((result)=>{
+      this.setData({
+        recommendList:result.result
+      })
     })
 
 
