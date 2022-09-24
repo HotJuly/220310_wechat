@@ -1,5 +1,5 @@
 // pages/video/video.js
-import myAxios from '../../utils/myAxios';
+// import myAxios from '../../utils/myAxios';
 // Page会接收一个配置对象,根据这个配置对象生成一个实例对象
 // Page会将配置对象身上的属性给实例对象也来一份,例如以下的a和$myAxios
 Page({
@@ -54,13 +54,39 @@ Page({
   // $myAxios:myAxios,
 
   // 用于监视用户点击导航选项操作
-  changeCurrentId(event){
+  async changeCurrentId(event){
     // 区分target和currentTarget
     const currentId = event.currentTarget.dataset.id;
     // console.log('currentId',currentId);
 
+    // setData更新数据一定是同步更新,也就说哪怕下一行代码立即使用data数据,也一定是最新的
     this.setData({
       currentId
+    })
+
+    wx.showLoading({
+      title:"加载中..."
+    })
+
+    await this.getVideoList();
+
+    wx.hideLoading();
+  },
+
+  // 用于请求当前最新的分组对应的视频列表
+  async getVideoList(){
+    this.setData({
+      videoList:[]
+    });
+    
+    const result2 = await this.$myAxios('/video/group',{
+      id:this.data.currentId
+    })
+
+    this.setData({
+      videoList:result2.datas.map((item)=>{
+        return item.data;
+      })
     })
   },
 
@@ -96,15 +122,9 @@ Page({
       currentId:navList[0].id
     })
 
-    const result2 = await myAxios('/video/group',{
-      id:this.data.currentId
-    })
+    if(!wx.getStorageSync('cookie'))return;
 
-    this.setData({
-      videoList:result2.datas.map((item)=>{
-        return item.data;
-      })
-    })
+    this.getVideoList();
 
     // console.log('result2',result2)
   },
