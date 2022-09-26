@@ -16,11 +16,48 @@ Page({
     currentId:null,
 
     // 用于存储视频列表相关数据
-    videoList:[]
+    videoList:[],
+
+    // 用于控制页面上video组件和image组件的切换
+    videoId:null,
+
+    // 用于控制下拉动画的效果
+    isTrigger:false
   },
   // a(){
   //   console.log('a')
   // },
+
+  // 该方法用于监视用户下拉刷新scroll-view区域操作
+  async handlePullDown(){
+    // console.log('handlePullDown')
+
+    await this.getVideoList();
+
+    this.setData({
+      isTrigger:false
+    })
+  },
+
+  // 该方法用于监视用户点击图片,自动切换video组件并实现播放功能
+  switchVideo(event){
+    // 由于我们故意将image组件和video组件的id属性写成相同的值
+    // 所以image组件的id等同于video组件的id
+    const vid = event.currentTarget.id;
+
+    // setData方法的第二个实参数据类型是函数,这个函数会在页面更新之后才调用
+    this.setData({
+      videoId:vid
+    },()=>{
+      // 1.创建video组件的上下文对象
+      const videoContext = wx.createVideoContext(vid);
+
+      // 2.调用API实现视频播放功能
+      videoContext.play();
+    })
+
+    
+  },
 
   // 该方法仅用于练习测试停止视频的API
   testApi(){
@@ -147,7 +184,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('onPullDownRefresh')
   },
 
   /**

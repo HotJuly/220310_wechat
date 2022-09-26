@@ -23,18 +23,32 @@
   </scroll-view>
 
   <!-- videoList区域 -->
-  <scroll-view class="videoList" scroll-y>
+  <scroll-view 
+  class="videoList" 
+  scroll-y
+  refresher-enabled
+  refresher-triggered="{{isTrigger}}"
+  bindrefresherrefresh="handlePullDown"
+  >
     <view 
     class="videoItem"
     wx:for="{{videoList}}"
     wx:key="vid"
     >
       <video 
+      wx:if="{{videoId===item.vid}}"
       id="{{item.vid}}" 
       class="common" 
       src="{{item.urlInfo.url}}"
       bindplay="handlePlay"
       ></video>
+      <image 
+      wx:else
+      id="{{item.vid}}"
+      class="common" 
+      src="{{item.coverUrl}}"
+      bindtap="switchVideo"
+      ></image>
       <view class="content">{{item.title}}</view>
       <view class="footer">
         <image class="avatar" src="{{item.creator.avatarUrl}}"></image>

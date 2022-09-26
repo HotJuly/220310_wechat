@@ -1,0 +1,26 @@
+小程序中下拉刷新有两种版本:
+	1.下拉页面
+		流程:
+			1.开启下拉动画(开启下拉功能)
+				1.在app.json->window->添加enablePullDownRefresh:true
+				2.在video.json->添加enablePullDownRefresh:true
+
+					以上根据使用范围进行选择
+
+			2.监视用户下拉刷新操作
+				在Page的配置对象中可以书写onPullDownRefresh回调函数进行监听
+
+	2.下拉scroll-view
+		流程:
+			1.开启下拉动画(开启下拉功能)
+				1.在scroll-view组件身上,添加refresher-enabled属性即可开启下拉动画
+
+			2.监视用户下拉刷新操作
+				给scoll-view组件绑定事件,事件名:refresherrefresh
+
+
+需求:当用户下拉刷新操作触发时,自动请求最新数据
+拆解:
+	1.当用户下拉刷新操作触发时
+
+	2.自动请求最新数据
