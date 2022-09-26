@@ -1,5 +1,6 @@
 // pages/video/video.js
 // import myAxios from '../../utils/myAxios';
+import hasPermission from '../../utils/hasPermission';
 // Page会接收一个配置对象,根据这个配置对象生成一个实例对象
 // Page会将配置对象身上的属性给实例对象也来一份,例如以下的a和$myAxios
 Page({
@@ -148,6 +149,12 @@ Page({
     // 选择使用onShow的原因,因为tabBar只要挂载一次之后,永久不销毁
     // 那么初始化生命周期中,只有onShow每次都会执行
 
+    // const flag = hasPermission();
+
+    // if(!flag)return;
+
+    console.log('这里是原装onShow',this)
+
     const result = await this.$myAxios('/video/group/list');
     // console.log('result',result)
     // 此处的result.data其实是res.data.data
@@ -159,7 +166,6 @@ Page({
       currentId:navList[0].id
     })
 
-    if(!wx.getStorageSync('cookie'))return;
 
     this.getVideoList();
 
