@@ -10,7 +10,7 @@ App({
     Page = function(config){
 
       config.$myAxios=myAxios;
-      
+
       const showFn = config.onShow;
 
       config.onShow = function(){

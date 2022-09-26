@@ -153,7 +153,7 @@ Page({
 
     // if(!flag)return;
 
-    console.log('这里是原装onShow',this)
+    // console.log('这里是原装onShow',this)
 
     const result = await this.$myAxios('/video/group/list');
     // console.log('result',result)
@@ -203,7 +203,29 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function ({from,target}) {
+    // console.log('onShareAppMessage',from)
+    if(from==="menu"){
+      // 能进入这里就说明用户点击了右上角的菜单
 
+      return {
+        title:"硅谷云音乐",
+        imageUrl:"/static/images/dazuo.jpeg",
+        path:"/pages/index/index"
+      }
+    }else{
+      // 能进入这里就说明用户点击了button按钮
+      // console.log('target',target)
+      const {title,imageurl} = target.dataset;
+      // const {title,imageurl:imageurl} = target.dataset;
+      // 注意,:之后的才是变量名称,:前面的是属性名称
+      // const imageurl =  target.dataset.imageurl;
+      // console.log('imageUrl',imageurl123)
+      return {
+        title,
+        imageUrl:imageurl,
+        path:"/pages/video/video"
+      }
+    }
   }
 })
