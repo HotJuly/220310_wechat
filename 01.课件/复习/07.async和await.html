@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function a() {
+        console.log(1);
+
+        await new Promise((resolve,reject) => {
+          console.log(2);
+            // resolve();  
+            reject()
+        });
+
+        setTimeout(() => {
+          console.log(3);
+        }, 0);
+
+        // throw new Error('xixi');
+
+        Promise.resolve().then(()=>{
+            console.log(4)
+        })
+
+        setTimeout(() => {
+          console.log(5);
+        }, 1000);
+
+        console.log(6);
+
+        return 123;
+      }
+
+      console.log(7);
+
+      const result = a();
+
+      console.log(8,result);
+
+      /*
+        async和await他们其实是语法糖,他们的核心是promise和.then
+        await会阻塞后续代码的执行,其实await就是将后续的代码放入.then的成功回调函数中
+            await无论遇到的是不是一个同步成功的promise对象,他后续代码都是异步任务
+
+        async函数的返回值是一个promise对象(简称p1对象)
+            如果async函数中有些return数据,那么返回的数据会成为p1对象的结果值
+
+            控制p1变为成功
+                只要async函数中所有的代码都成功执行,那么返回的p1就会变为成功状态
+
+            控制p1变为失败
+                如果async函数中的代码出现报错,那么返回的p1就会变为失败状态
+                如果async函数中的await遇到了失败promise对象,那么返回的p1就会变为失败状态
+      */
+
+      
+    //   function a() {
+    //     console.log(1);
+
+    //     return new Promise((resolve,reject) => {
+    //       console.log(2);
+    //     // resolve();
+    //     reject()
+    //     })
+    //     .then(()=>{
+    //         setTimeout(() => {
+    //         console.log(3);
+    //         }, 0);
+
+    //         Promise.resolve().then(()=>{
+    //             console.log(4)
+    //         })
+
+    //         setTimeout(() => {
+    //         console.log(5);
+    //         }, 1000);
+
+    //         console.log(6);
+
+    //         return 123;
+    //     })
+    //     ;
+    //   }
+    //   console.log(7);
+
+    //   a();
+
+    //   console.log(8);
+    </script>
+  </body>
+</html>
