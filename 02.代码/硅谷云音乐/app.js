@@ -30,5 +30,14 @@ App({
 
       return PageFn(config)
     }
+  },
+  globalData:{
+    msg:"我是全局初始化的数据",
+
+    // 用于记录当前背景音频歌曲的播放状态
+    playState:false,
+
+    // 用于记录当前背景音频歌曲是哪一首歌曲
+    audioId:null
   }
 })
