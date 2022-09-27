@@ -30,7 +30,7 @@ Page({
 
     // url传参是有长度限制的,不能传递太多的数据
     wx.navigateTo({
-      url: '/pages/song/song?songId=' + song.id,
+      url: '/songs/pages/song/song?songId=' + song.id,
     })
   },
 

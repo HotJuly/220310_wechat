@@ -59,7 +59,9 @@ Page({
 
     const time = this.data.songObj.dt/1000*this.scale;
 
+    this.backgroundAudioManager.pause();
     this.backgroundAudioManager.seek(time);
+    this.backgroundAudioManager.play();
 
     this.flag1=false;
   },
@@ -93,7 +95,7 @@ Page({
 
     // 用于监视背景音频进度更新事件
     this.backgroundAudioManager.onTimeUpdate(()=>{
-      // console.log('onTimeUpdate')
+      console.log('onTimeUpdate')
 
       // 获取到当前的播放进度
       let currentTime = this.backgroundAudioManager.currentTime;
@@ -116,6 +118,7 @@ Page({
 
   // 用于监视用户点击上一首/下一首按钮,实现切换歌曲功能
   switchType(){
+    this.backgroundAudioManager.pause();
     this.$PubSub.publish('switchType','next');
   },
 
