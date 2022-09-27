@@ -23,45 +23,49 @@ Page({
     songId:null
   },
 
-  // 用于监视用户点击上一首/下一首按钮,实现切换歌曲功能
-  switchType(){
-    this.$PubSub.subscribe('sendId',(msg,songId)=>{
-      // console.log(msg,songId)
-
-      this.setData({
-        songId
-      })
-
-      const promise1 = this.getMusicDetail();
-
-      const promise2 =  this.getMusicUrl();
-
-      Promise.all([promise1,promise2])
-      .then(()=>{
-        this.backgroundAudioManager.src = this.data.musicUrl;
-        this.backgroundAudioManager.title = this.data.songObj.name;
-
+  // 用于绑定背景音频管理器相关的所有事件
+  addEvent(){
+    // 监视播放
+    this.backgroundAudioManager.onPlay(()=>{
+      // console.log('onPlay')
+      
+      if(this.data.songId === appInstance.globalData.audioId){
         this.setData({
           isPlay:true
         })
-      })
-      .catch(()=>{
-        wx.showToast({
-          title: '请求时候,请稍后再试',
-          icon:"none"
-        })
-      })
+      }
 
+      appInstance.globalData.playState = true;
     })
+
+    // 监视暂停
+    this.backgroundAudioManager.onPause(()=>{
+      // console.log('onPause')
+      if(this.data.songId === appInstance.globalData.audioId){
+        this.setData({
+          isPlay:false
+        })
+      }
+
+      appInstance.globalData.playState = false;
+    })
+  },
+
+  // 用于监视用户点击上一首/下一首按钮,实现切换歌曲功能
+  switchType(){
     this.$PubSub.publish('switchType','next');
   },
 
   // 用于监视用户点击播放按钮操作
-  handlePlay(){
+  async handlePlay(){
     // console.log('handlePlay')
 
     // 1.获取背景音频管理器对象
     // const backgroundAudioManager = wx.getBackgroundAudioManager();
+    
+    if(!this.data.musicUrl){
+      await this.getMusicUrl();
+    }
 
     if(this.data.isPlay){
       this.backgroundAudioManager.pause();
@@ -122,7 +126,8 @@ Page({
     // const song = JSON.parse(options.song);
     // console.log('song',song);
 
-    const songId = options.songId;
+    // URL传参,数据类型一定是字符串,相当于具有隐式类型转换效果
+    const songId = options.songId*1;
 
     this.setData({
       songId
@@ -130,10 +135,11 @@ Page({
 
     this.getMusicDetail();
 
-    this.getMusicUrl();
 
     // 取出app实例对象身上缓存的两个重要数据
     const {playState,audioId} = appInstance.globalData;
+
+    // console.log(this.data.songId,audioId,playState)
 
     if(this.data.songId === audioId&&playState){
       this.setData({
@@ -141,7 +147,44 @@ Page({
       })
     }
 
-    this.backgroundAudioManager = wx.getBackgroundAudioManager()
+    this.backgroundAudioManager = wx.getBackgroundAudioManager();
+    
+    this.token = this.$PubSub.subscribe('sendId',(msg,songId)=>{
+      // console.log(msg,songId)
+
+      this.setData({
+        songId
+      })
+
+      const promise1 = this.getMusicDetail();
+
+      const promise2 =  this.getMusicUrl();
+
+      Promise.all([promise1,promise2])
+      .then(()=>{
+        this.backgroundAudioManager.src = this.data.musicUrl;
+        this.backgroundAudioManager.title = this.data.songObj.name;
+
+        this.setData({
+          isPlay:true
+        })
+
+        // 用app实例对象缓存当前背景音频的状态和歌曲id
+        appInstance.globalData.audioId = this.data.songId;
+        appInstance.globalData.playState = true;
+
+        console.log(1)
+      })
+      .catch(()=>{
+        wx.showToast({
+          title: '请求时候,请稍后再试',
+          icon:"none"
+        })
+      })
+
+    })
+
+    this.addEvent();
 
 
     // 用于测试练习app对象的使用
@@ -175,7 +218,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.$PubSub.unsubscribe(this.token)
   },
 
   /**
