@@ -1,5 +1,6 @@
 // app.js
 import PubSub from 'pubsub-js';
+import moment from 'moment';
 import myAxios from './utils/myAxios';
 import hasPermission from './utils/hasPermission';
 import utilConfig from './utils/config';
@@ -13,6 +14,8 @@ App({
       config.$myAxios=myAxios;
       
       config.$PubSub=PubSub;
+
+      config.$moment=moment;
 
       const showFn = config.onShow;
 

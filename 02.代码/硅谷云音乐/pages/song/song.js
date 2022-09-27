@@ -20,7 +20,48 @@ Page({
     isPlay:false,
 
     // 用于存储记录当前是哪一首歌
-    songId:null
+    songId:null,
+
+    // 用于存储当前页面歌曲播放进度
+    currentTime:"00:00",
+
+    // 用于存储当前页面歌曲的总时长
+    durationTime:"--:--",
+
+    // 用于控制红色进度条的宽度
+    currentWidth:0
+  },
+
+  handleTouchStart(){
+    this.flag1=true;
+  },
+
+  // 用于监视用户在进度条遮罩层上的手指滑动操作
+  handleTouchMove(event){
+    // console.log('handleTouchMove',event)
+    const clientX = event.touches[0].clientX;
+
+    // w1就是当前手指距离进度条最左边的差值
+    const w1 = clientX - this.left;
+
+    // 计算需要跳转歌曲的比例
+    this.scale = w1/this.width;
+
+    this.setData({
+      currentWidth:this.scale*100
+    })
+
+    // console.log('scale',scale)
+  },
+
+  // 用于监视用户进度条区域手指抬起事件,并且跳转进度
+  handleTouchEnd(){
+
+    const time = this.data.songObj.dt/1000*this.scale;
+
+    this.backgroundAudioManager.seek(time);
+
+    this.flag1=false;
   },
 
   // 用于绑定背景音频管理器相关的所有事件
@@ -48,6 +89,28 @@ Page({
       }
 
       appInstance.globalData.playState = false;
+    })
+
+    // 用于监视背景音频进度更新事件
+    this.backgroundAudioManager.onTimeUpdate(()=>{
+      // console.log('onTimeUpdate')
+
+      // 获取到当前的播放进度
+      let currentTime = this.backgroundAudioManager.currentTime;
+
+      this.setData({
+        currentTime:this.$moment(currentTime*1000).format('mm:ss')
+      })
+
+
+      if(!this.flag1){
+        // 当前红色进度条宽度=当前时间/总时间
+        // 注意100000=1000*100,1000的进行单位转换秒变为毫秒,100是为了变为百分比数字
+        const currentWidth = currentTime*100000/this.data.songObj.dt;
+        this.setData({
+          currentWidth
+        })
+      }
     })
   },
 
@@ -96,7 +159,10 @@ Page({
     const result = await this.$myAxios('/song/detail',{ids:this.data.songId});
     // console.log('result',result)
     this.setData({
-      songObj:result.songs[0]
+      songObj:result.songs[0],
+
+      // moment函数能接受的数据单位是ms
+      durationTime:this.$moment(result.songs[0].dt).format("mm:ss")
     })
 
     // 通过API的形式动态注入控制当前导航栏的展示标题
@@ -185,6 +251,20 @@ Page({
     })
 
     this.addEvent();
+
+    // 1.通过API生成小程序wxml中的查询器对象
+    const selectorQuery = wx.createSelectorQuery();
+
+    // 2.通过API找到页面上的某个组件
+    // 注意!!!:无论执行任何的操作组件代码,最后都一定要写上.exec(),否则都无效
+    selectorQuery.select("#mask").boundingClientRect((data)=>{
+      // console.log('data',data)
+      // 缓存进度条距离屏幕左边的距离,目的是为了方便计算出当前手指在进度条上哪个位置
+      this.left = data.left;
+
+      // 缓存进度条宽度,目的是为了方便等下跳转歌曲进度,用于计算百分比
+      this.width = data.width;
+    }).exec()
 
 
     // 用于测试练习app对象的使用
