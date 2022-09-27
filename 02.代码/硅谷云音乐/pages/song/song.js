@@ -1,4 +1,6 @@
 // pages/song/song.js
+import PubSub from 'pubsub-js';
+console.log('PubSub',PubSub)
 const appInstance = getApp();
 Page({
 
