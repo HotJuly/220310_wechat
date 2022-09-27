@@ -13,13 +13,20 @@ Page({
     day:"--",
 
     // 用于存储每日推荐的歌曲数据
-    recommendList:[]
+    recommendList:[],
+
+    // 用于存储当前正在展示的歌曲下标
+    currentIndex:null
   },
 
   // 用于监视用户点击某个歌曲选项,跳转到song页面
   toSong(event){
     // console.log(event.currentTarget.dataset.song)
-    const song = event.currentTarget.dataset.song
+    const {song,index} = event.currentTarget.dataset;
+
+    this.setData({
+      currentIndex:index
+    })
 
     // url传参是有长度限制的,不能传递太多的数据
     wx.navigateTo({
@@ -31,7 +38,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.$PubSub.subscribe("switchType",(msg,type)=>{
+      // console.log('switchType',msg,type);
+      let {currentIndex,recommendList} = this.data;
 
+      if(type==="next"){
+        if(currentIndex===recommendList.length-1){
+          currentIndex=0
+        }else{
+          currentIndex++;
+        }
+      }else{
+        if(currentIndex===0){
+          currentIndex=recommendList.length-1;
+        }else{
+          currentIndex--;
+        }
+      }
+
+      const songId = recommendList[currentIndex].id;
+      // console.log('songId',songId)
+
+      this.setData({
+        currentIndex
+      })
+
+      this.$PubSub.publish('sendId',songId);
+    })
   },
 
   /**
